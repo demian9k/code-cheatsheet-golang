@@ -1,0 +1,6 @@
+use (
+	.
+	./mygomodule1
+	./mygomodule2
+	./mygomodule2/mygomodule2sub1
+)

@@ -9,15 +9,23 @@ import (
 	"testing"
 )
 
+func Sum(a int, b int) int {
+	return a + b
+}
+
+func TestSum(t *testing.T) {
+	s := Sum(3, 6)
+
+	if s != 9 {
+		t.Error("Wrong result")
+	}
+}
+
 /*
 Benchmark** prefix를 가진다.
 일반적으로 Benchmark prefix 다음 문자는 Uppercase로 시작한다.
 *gotest.B 타입의 매개변수를 받습니다.
 */
-func Sum(a int, b int) int {
-	return a + b
-}
-
 func BenchmarkSum(b *testing.B) {
 	/*
 		goCommand$ go test -bench .
@@ -52,7 +60,7 @@ func TestPanicWithoutAssert(t *testing.T) {
 }
 
 /*
-	assert 를 사용한 panic 테스트
+assert 를 사용한 panic 테스트
 */
 func TestPanic(t *testing.T) {
 	assert.Panics(t, func() { divide(1, 0) })
