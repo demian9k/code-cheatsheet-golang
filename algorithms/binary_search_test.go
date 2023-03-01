@@ -24,9 +24,75 @@ func TestBinarySearch(t *testing.T) {
 
 	target := nums[17] //99
 
-	var resultIndex = BinarySearch(nums, 22)
+	var resultIndex = BinarySearch(nums, target, 0, len(nums)-1)
 
 	if target != nums[resultIndex] {
 		t.Errorf("target %d result %d not equal", target, nums[resultIndex])
 	}
+}
+
+func TestBinarySearch_recur(t *testing.T) {
+
+	nums := []int{
+		1, 2, 3, 4, 5, 11, 12, 16, 22, 23, 24, 33, 44, 55, 66, 77, 94, 99, 100, 108,
+	}
+	fmt.Println(nums)
+
+	test1 := func(target int) {
+		//target := nums[targetIndex] //99
+		resultIndex := BinarySearch_recur(nums, target, 0, len(nums)-1)
+
+		if target != nums[resultIndex] {
+			t.Errorf("target %d result %d not equal", target, nums[resultIndex])
+		}
+	}
+
+	test1(nums[17])
+	test1(nums[7])
+}
+
+func TestBinarySearchTailRecursion(t *testing.T) {
+
+	nums := []int{
+		1, 2, 3, 4, 5, 11, 12, 16, 22, 23, 24, 33, 44, 55, 66, 77, 94, 99, 100, 108,
+	}
+	fmt.Println(nums)
+
+	test1 := func(target int) {
+		//target := nums[targetIndex] //99
+		resultIndex := BinarySearchTailRecursion(nums, target)
+
+		fmt.Println(resultIndex)
+
+		if target != nums[resultIndex] {
+			t.Errorf("target %d result %d not equal", target, nums[resultIndex])
+		}
+	}
+
+	test1(nums[17])
+	test1(nums[7])
+}
+
+func BenchmarkBinarySearchRecur(b *testing.B) {
+	nums := []int{
+		1, 2, 3, 4, 5, 11, 12, 16, 22, 23, 24, 33, 44, 55, 66, 77, 94, 99, 100, 108,
+	}
+
+	for i := 0; i < b.N; i++ {
+		BinarySearch_recur(nums, nums[17], 0, len(nums)-1)
+	}
+}
+
+func BenchmarkBinarySearchTailRecur(b *testing.B) {
+	nums := []int{
+		1, 2, 3, 4, 5, 11, 12, 16, 22, 23, 24, 33, 44, 55, 66, 77, 94, 99, 100, 108,
+	}
+
+	for i := 0; i < b.N; i++ {
+		BinarySearchTailRecursion(nums, nums[17])
+	}
+
+	//for i := 0; i < b.N; i++ {
+	//	BinarySearch_recur(nums, nums[17], 0, len(nums)-1)
+	//}
 }
