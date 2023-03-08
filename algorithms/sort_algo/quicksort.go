@@ -1,4 +1,4 @@
-package algorithms
+package sort_algo
 
 func partition(arr []int, low, high int) ([]int, int) {
 	pivot := arr[high]

@@ -46,24 +46,6 @@ func BinarySearch_recur(list []int, target int, start int, end int) int {
 	return BinarySearch_recur(list, target, start, end)
 }
 
-//func factorial(n int) int {
-//	if n == 1 {
-//		return 1
-//	}
-//	return n * factorial(n-1)
-//}
-//
-//func tailFact(n int) int {
-//	return factT(n-1, n)
-//}
-//
-//func factT(n, current int) int {
-//	if n == 1 {
-//		return current
-//	}
-//	return factT(n-1, n*current)
-//}
-
 func BinarySearchTailRecursion(list []int, target int) int {
 	return BinarySearchTailRecursionT(list, target, 0, len(list)-1)
 }
