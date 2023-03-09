@@ -1,26 +1,16 @@
 package shortest_path
 
 import (
+	"fmt"
+	"os"
 	"testing"
 )
 
 func TestNewSimpleDijkstra(t *testing.T) {
+	teardown := setupTest(t)
+	defer teardown(t)
 
-	nodeCount := 6
-	edgeCount := 11
-	graphRels := []GraphRel{
-		{1, 2, 2},
-		{1, 3, 5},
-		{1, 4, 1},
-		{2, 3, 3},
-		{2, 4, 2},
-		{3, 2, 3},
-		{3, 6, 5},
-		{4, 3, 3},
-		{4, 5, 1},
-		{5, 3, 1},
-		{5, 6, 2},
-	}
+	graphRels, nodeCount, edgeCount := produceGraphRelsData()
 
 	dijkstra := NewSimpleDijkstra(nodeCount, edgeCount, graphRels)
 	dijkstra.Execute(1)
@@ -28,10 +18,18 @@ func TestNewSimpleDijkstra(t *testing.T) {
 }
 
 func TestNewFastDijkstra(t *testing.T) {
+	teardown := setupTest(t)
+	defer teardown(t)
 
-	nodeCount := 6
-	edgeCount := 11
-	graphRels := []GraphRel{
+	graphRels, nodeCount, edgeCount := produceGraphRelsData()
+
+	dijkstra := NewFastDijkstra(nodeCount, edgeCount, graphRels)
+	dijkstra.Execute(1)
+	dijkstra.PrintResult()
+}
+
+func produceGraphRelsData() ([]GraphRel, int, int) {
+	return []GraphRel{
 		{1, 2, 2},
 		{1, 3, 5},
 		{1, 4, 1},
@@ -43,9 +41,31 @@ func TestNewFastDijkstra(t *testing.T) {
 		{4, 5, 1},
 		{5, 3, 1},
 		{5, 6, 2},
-	}
+	}, 6, 11
+}
 
-	dijkstra := NewFastDijkstra(nodeCount, edgeCount, graphRels)
-	dijkstra.Execute(1)
-	dijkstra.PrintResult()
+func setupTest(tb testing.TB) func(tb testing.TB) {
+	fmt.Printf("\033[1;34m%s\033[0m", ">> Setup Test\n")
+
+	return func(tb testing.TB) {
+		fmt.Printf("\033[1;34m%s\033[0m", ">> Teardown Test\n")
+	}
+}
+
+func setupMain() {
+	// Do something here.
+	fmt.Printf("\033[1;33m%s\033[0m", "> Setup completed\n")
+}
+
+func teardownMain() {
+	// Do something here.
+	fmt.Printf("\033[1;33m%s\033[0m", "> Teardown completed")
+	fmt.Printf("\n")
+}
+
+func TestMain(m *testing.M) {
+	setupMain()
+	code := m.Run()
+	teardownMain()
+	os.Exit(code)
 }

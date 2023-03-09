@@ -32,10 +32,13 @@ func (k *KruskalAlgorithm) Execute(graphRels []*GraphRel) int {
 
 	totalCosts := 0
 
+	// edge를 하나씩 루프하며 사이클을 발생시키는지 확인한다.
+	// 발생하면 포함시키지 않는다.
 	for _, edge := range sortedRels {
 		if k.FindParent(k.parent, edge.FromNode) != k.FindParent(k.parent, edge.ToNode) {
+			// 사이클이 발생하지 않으면 트리에 포함시킨다.
 			k.UnionParent(k.parent, edge.FromNode, edge.ToNode)
-			totalCosts += edge.Weight
+			totalCosts += edge.Weight // 비용은 합산해준다.
 		}
 	}
 

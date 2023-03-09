@@ -6,7 +6,7 @@ import (
 	"fmt"
 )
 
-// FastDijkstra implements Dijkstra's algorithm with priority queue in O(E log V) time complexity.
+// 구현이 어렵고 빠른 코드 (E log V)
 type FastDijkstra struct {
 	nodeCount int
 	edgeCount int
@@ -15,7 +15,6 @@ type FastDijkstra struct {
 	distance  []int
 }
 
-// NewFastDijkstra returns a new instance of FastDijkstra.
 func NewFastDijkstra(nodeCount, edgeCount int, graphRels []GraphRel) *FastDijkstra {
 	dijkstra := &FastDijkstra{
 		nodeCount: nodeCount,
@@ -36,7 +35,6 @@ func NewFastDijkstra(nodeCount, edgeCount int, graphRels []GraphRel) *FastDijkst
 	return dijkstra
 }
 
-// Execute runs Dijkstra's algorithm on the given start node.
 func (d *FastDijkstra) Execute(start int) {
 	q := make(heapq.PriorityQueue[int], 0)
 
@@ -73,7 +71,6 @@ func (d *FastDijkstra) Execute(start int) {
 	}
 }
 
-// PrintResult prints the shortest distance to each node.
 func (d *FastDijkstra) PrintResult() {
 	for i := 1; i <= d.nodeCount; i++ {
 		if d.distance[i] == d.INF {
