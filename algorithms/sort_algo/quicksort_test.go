@@ -1,4 +1,4 @@
-package sort_algo
+package algorithms
 
 import (
 	"testing"

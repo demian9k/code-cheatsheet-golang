@@ -2,6 +2,7 @@ package datastructure
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"testing"
 )
@@ -47,10 +48,10 @@ func produceOriginalArray() []int {
 }
 
 func setupTest(tb testing.TB) func(tb testing.TB) {
-	fmt.Printf("\033[1;34m%s\033[0m", ">> Setup Test\n")
+	log.Printf("\033[1;34m%s\033[0m", ">> Setup Test\n")
 
 	return func(tb testing.TB) {
-		fmt.Printf("\033[1;34m%s\033[0m", ">> Teardown Test\n")
+		log.Printf("\033[1;34m%s\033[0m", ">> Teardown Test\n")
 	}
 }
 

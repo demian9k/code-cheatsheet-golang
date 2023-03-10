@@ -1,4 +1,4 @@
-package shortest_path
+package algorithms
 
 import (
 	"code-cheatsheet-golang/datastructure/heapq"
