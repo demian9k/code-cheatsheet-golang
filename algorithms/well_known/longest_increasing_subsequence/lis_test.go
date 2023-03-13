@@ -50,12 +50,10 @@ func TestLISStruct(t *testing.T) {
 }
 
 func setupMain() {
-	// Do something here.
 	fmt.Printf("\033[1;33m%s\033[0m", "> Setup completed\n")
 }
 
 func teardownMain() {
-	// Do something here.
 	fmt.Printf("\033[1;33m%s\033[0m", "> Teardown completed")
 	fmt.Printf("\n")
 }

@@ -63,8 +63,8 @@ func NewLIS(arr []int) *LIS {
 /*
 GetLISLength
 
- LIS의 길이를 반환합니다.
- L, index 배열을 갱신하면서 이진 탐색(lower bound)을 이용하여 LIS의 길이를 계산합니다.
+	LIS의 길이를 반환합니다.
+	L, index 배열을 갱신하면서 이진 탐색(lower bound)을 이용하여 LIS의 길이를 계산합니다.
 */
 func (l *LIS) GetLISLength() int {
 	idx := 0
